@@ -15,10 +15,24 @@ public class Main {
 				f.cadastrarUsuario(Integer.parseInt(cmd[1]), cmd[2]);
 				break;
 			case "r_user":
-				System.out.println(f.recuperarUsuario(Integer.parseInt(cmd[1])));
+				try {
+					System.out.println(f.recuperarUsuario(Integer.parseInt(cmd[1])));
+				} catch (SistemaException nf) {
+					System.out.println(nf.getMessage());
+				}
 				break;
 			case "d_user":
-				f.apagarUsuario(Integer.parseInt(cmd[1]));
+				try {
+					f.apagarUsuario(Integer.parseInt(cmd[1]));
+				} catch (ApagarInvalidoException aie) {
+					System.out.println(aie.getMessage());
+				}
+				break;
+			case "s_user":
+				f.salvarUsuarios();
+				break;
+			case "l_user":
+				f.carregarUsuarios();
 				break;
 			case "c_jogo":
 				f.cadastrarJogo(cmd[1], cmd[2]);
